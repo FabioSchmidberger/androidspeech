@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         voiceInput = (TextView) findViewById(R.id.voiceInput);
-        speakButton = (TextView) findViewById(R.id.btnSpeak);
+        speakButton = (TextView) findViewById(R.id.buttonSpeak);
 
         speakButton.setOnTouchListener(new View.OnTouchListener() {
             @Override

@@ -14,31 +14,86 @@
         android:gravity="center"
         android:orientation="vertical" >
 
-       <TextView
-           android:id="@+id/voiceInput"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_alignParentTop="true"
-           android:layout_centerHorizontal="true"
-           android:hint="Text goes here"
-           android:layout_marginTop="600dp"
-           android:textSize="26sp"
-           android:textStyle="normal" />
 
-       <TextView
-           android:id="@+id/btnSpeak"
+       <LinearLayout
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:background="@color/colorPrimary"
-           android:clickable="true"
-           android:gravity="center"
-           android:padding="16dp"
-           android:text="Tap to Open Mic"
-           android:textColor="@color/colorAccent"
-           android:textSize="22sp"
-           android:textStyle="normal"
-           tools:layout_editor_absoluteX="0dp"
-           tools:layout_editor_absoluteY="608dp" />
+           android:background="@drawable/border"
+           android:layout_margin="15dp"
+           android:orientation="vertical"
+           android:padding="15dp">
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:text="Debug Info:"
+               android:textSize="17sp" />
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textStyle="bold"
+               android:text="Currently Recording"/>
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textStyle="bold"
+               android:text="Label 2: Value 2"/>
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textStyle="bold"
+               android:text="Label 3: Value 3"/>
+
+       </LinearLayout>
+
+
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:background="@drawable/border"
+               android:layout_margin="15dp"
+               android:orientation="vertical"
+               android:padding="15dp">
+
+               <TextView
+                   android:id="@+id/voiceInput"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_alignParentTop="true"
+                   android:layout_centerHorizontal="true"
+                   android:hint="Text goes here"
+                   android:layout_margin="20dp"
+                   android:textSize="18sp"
+                   android:textStyle="normal" />
+
+           </LinearLayout>
+
+
+           <Button
+               android:id="@+id/buttonSpeak"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:background="@drawable/button_style"
+               android:gravity="center"
+               android:padding="16dp"
+               android:layout_margin="20dp"
+               android:text="Tap to start recording"
+               android:textColor="@color/colorAccent"
+               android:textSize="22sp"
+               android:textStyle="normal" />
+
+       </LinearLayout>
+
 
     </LinearLayout>
 

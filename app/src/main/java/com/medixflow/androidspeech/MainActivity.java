@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MyActivity";
 
+    private String ResultText = "";
+    private String CurrentWord = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 debugRecordingStatus.setText("onEndofSpeech");
                 Log.d(TAG, "onEndofSpeech");
 
+
             }
 
             @Override
@@ -103,8 +107,12 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onResults " + bundle + confidenceScores);
 
                 //displaying the first match
-                if (matches != null)
-                    voiceInput.setText(matches.get(0));
+                if (matches != null) {
+                    String Result = matches.get(0);
+                    ResultText = ResultText + "; - \n" + Result;
+                    voiceInput.setText(ResultText);
+                }
+
 
                 mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
             }
@@ -115,7 +123,9 @@ public class MainActivity extends AppCompatActivity {
 
                 ArrayList data = partialResults.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
                 String word = (String) data.get(data.size() - 1);
-                voiceInput.setText(word);
+                CurrentWord = word;
+
+                voiceInput.setText(ResultText + " -- \n" + CurrentWord);
 
                 Log.d(TAG, "partial_results: " + word);
             }

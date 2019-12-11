@@ -42,8 +42,6 @@ public class MainActivity extends AppCompatActivity {
 
         checkPermission();
 
-
-
         final SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
 
         final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -51,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
                 Locale.getDefault());
+        mSpeechRecognizerIntent.putExtra("android.speech.extra.DICTATION_MODE", true);
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true);
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_PREFER_OFFLINE, true);
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, 4000);
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS, 8000);
 
 
         mSpeechRecognizer.setRecognitionListener(new RecognitionListener() {
@@ -66,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onRmsChanged(float v) {
-                Log.d(TAG, "onRmsChanged");
+                //Log.d(TAG, "onRmsChanged");
             }
 
             @Override
@@ -82,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onError(int error) {
                 Log.d(TAG,  "error " +  error);
-                voiceInput.setText("error " + error);
+                //voiceInput.setText("error " + error);
             }
 
             @Override
@@ -106,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
                 ArrayList data = partialResults.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
                 String word = (String) data.get(data.size() - 1);
-                voiceInput.setText( voiceInput.getText() + " " + word);
+                voiceInput.setText(word);
 
                 Log.d(TAG, "partial_results: " + word);
             }
@@ -126,8 +129,8 @@ public class MainActivity extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_UP:
-                        mSpeechRecognizer.stopListening();
-                        voiceInput.setHint("You will see input here");
+                        //mSpeechRecognizer.stopListening();
+                        //voiceInput.setHint("You will see input here");
                         break;
 
                     case MotionEvent.ACTION_DOWN:

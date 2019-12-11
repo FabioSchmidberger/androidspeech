@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView voiceInput;
     private TextView speakButton;
+    private TextView debugRecordingStatus;
     private final int REQ_CODE_SPEECH_INPUT = 100;
 
     private static final String TAG = "MyActivity";
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onReadyForSpeech(Bundle bundle) {
                 Log.d(TAG, "onReadyForSpeech");
+                debugRecordingStatus.setText("onReadyForSpeech");
             }
 
             @Override
@@ -79,7 +81,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onEndOfSpeech() {
+                debugRecordingStatus.setText("onEndofSpeech");
                 Log.d(TAG, "onEndofSpeech");
+
             }
 
             @Override
@@ -101,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
                 //displaying the first match
                 if (matches != null)
                     voiceInput.setText(matches.get(0));
+
+                mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
             }
 
             @Override
@@ -122,7 +128,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         voiceInput = (TextView) findViewById(R.id.voiceInput);
+        debugRecordingStatus = (TextView) findViewById(R.id.debugRecordingStatus);
         speakButton = (TextView) findViewById(R.id.buttonSpeak);
+
 
         speakButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
